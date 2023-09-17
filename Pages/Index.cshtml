@@ -1,0 +1,34 @@
+﻿@page
+@model ChineseZodiac.Pages.IndexModel
+
+<div class="text-center">
+     
+    <h2>COMP 4952 - lab02: Chinese Zodiac using Razor Pages</h2>
+    <br />
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Year" class="control-label">Enter a Year</label>
+            <input asp-for="Year" class="form-control" required />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Get Zodiac</button>
+        <div class="form-group">
+            <br />
+            
+            <a asp-action="Index" class="btn btn-success">Clear</a> 
+        </div>
+    </form>
+
+     @if (Model.IsResultAvailable){
+        <div>
+            <br />
+            <strong> Zodiac Sign: </strong> @Model.Zodiac<br/> 
+          <img src="~/Images/images/@Model.ZodiacImage" alt=@Model.Zodiac>
+        </div>
+     } else if (!string.IsNullOrEmpty(Model.ErrorMessage)){
+        <div>
+            <span class="text-danger">@Model.ErrorMessage</span>
+        </div>
+     }
+
+</div>
